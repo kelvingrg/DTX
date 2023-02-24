@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>a160be6c-3ca3-4ec8-98fa-ab9740729370</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Contoso</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Beacon-DTX"/>
+  <Description DefaultValue="BEACON Digital Transformation for Excellence plugin"/>
+  <IconUrl DefaultValue="https://www.contoso.com/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://www.contoso.com/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://www.contoso.com/help"/>
+  <AppDomains>
+    <AppDomain>https://www.contoso.com</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Workbook"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="CustomFunctionsRuntime" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://www.contoso.com/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <AllFormFactors>
+          <ExtensionPoint xsi:type="CustomFunctions">
+            <Script>
+              <SourceLocation resid="Functions.Script.Url"/>
+            </Script>
+            <Page>
+              <SourceLocation resid="Functions.Page.Url"/>
+            </Page>
+            <Metadata>
+              <SourceLocation resid="Functions.Metadata.Url"/>
+            </Metadata>
+            <Namespace resid="Functions.Namespace"/>
+          </ExtensionPoint>
+        </AllFormFactors>
+        <DesktopFormFactor>
+          <!-- <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted> -->
+          <FunctionFile resid="Commands.Url"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+
+
+            <CustomTab id="BeaconDtx">
+             <Tooltip>
+              <Title resid="BeaconDtx.SuperTip.Title" />
+              <Description resid="BeaconDtx.SuperTip.Description" />
+             </Tooltip>
+
+
+              <Group id="LoginGroup">
+                <Label resid="LoginGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="LoginButton">
+                  <Label resid="LoginButton.Label"/>
+                  <Supertip>
+                    <Title resid="LoginButton.Label"/>
+                    <Description resid="LoginButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="login.16x16"/>
+                    <bt:Image size="32" resid="login.32x32"/>
+                    <bt:Image size="80" resid="login.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>login</FunctionName>
+                    </Action>
+                </Control>
+              </Group>
+
+
+               <Group id="MaterialMaster">
+                <Label resid="MaterialMaster.Label"/>
+                 <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="MaterialMasterGet">
+                  <Label resid="MaterialMasterGet.Label"/>
+                  <Supertip>
+                    <Title resid="MaterialMasterGet.Label"/>
+                    <Description resid="MaterialMasterGet.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="materialMasterGet.16x16"/>
+                    <bt:Image size="32" resid="materialMasterGet.32x32"/>
+                    <bt:Image size="80" resid="materialMasterGet.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>MaterialMasterGet</FunctionName>
+                    </Action>
+                </Control>
+                <Control xsi:type="Button" id="MaterialMasterExport">
+                  <Label resid="MaterialMasterExport.Label"/>
+                  <Supertip>
+                    <Title resid="MaterialMasterExport.Label"/>
+                    <Description resid="MaterialMasterExport.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="32" resid="materialMasterExport.32x32"/>
+                    <bt:Image size="80" resid="materialMasterExport.80x80"/>
+                    <bt:Image size="16" resid="materialMasterExport.16x16"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>MaterialMasterExport</FunctionName>
+                    </Action>
+                </Control>
+                 <Control xsi:type="Button" id="MaterialMasterUpdate">
+                  <Label resid="MaterialMasterUpdate.Label"/>
+                  <Supertip>
+                    <Title resid="MaterialMasterUpdate.Label"/>
+                    <Description resid="MaterialMasterUpdate.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="materialMasterUpdate.16x16"/>
+                    <bt:Image size="32" resid="materialMasterUpdate.32x32"/>
+                    <bt:Image size="80" resid="materialMasterUpdate.80x80"/>
+                    
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>MaterialMasterUpdate</FunctionName>
+                    </Action>
+                </Control>
+              </Group>
+               <Group id="ProjectGroup">
+                <Label resid="ProjectGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                 <Control xsi:type="Menu" id="Project.Menu">
+                              <Label resid="Project.Menu.Label"/>
+                              <Supertip>
+                              <Title resid="Project.Menu.Label"/>
+                              <Description resid="Project.Menu.Tooltip"/>
+                              </Supertip>
+                               <Icon>
+                    <bt:Image size="16" resid="project.16x16"/>
+                    <bt:Image size="32" resid="project.32x32"/>
+                    <bt:Image size="80" resid="project.80x80"/>
+                  </Icon>
+                    <Items>
+                      <Item id="Project.Menu.Item1">
+                      <Label resid="Project.Menu.Item1.Label"/>
+                      <Supertip>
+                      <Title resid="Project.Menu.Item1.Label"/>
+                      <Description resid="Project.Menu.Item1.Tooltip"/>
+                      </Supertip>
+                    <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                   <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                  </Item>
+                   <Item id="Project.Menu.Item2">
+                      <Label resid="Project.Menu.Item2.Label"/>
+                      <Supertip>
+                      <Title resid="Project.Menu.Item2.Label"/>
+                      <Description resid="Project.Menu.Item2.Tooltip"/>
+                      </Supertip>
+                    <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                   <Action xsi:type="ExecuteFunction">
+                   <FunctionName>writeValue</FunctionName>
+                   </Action>
+                  </Item>
+                   <!-- <Item id="Project.Menu.Item3">
+                      <Label resid="Project.Menu.Ite3.Label"/>
+                      <Supertip>
+                      <Title resid="Project.Menu.Item3.Label"/>
+                      <Description resid="Project.Menu.Item3.Tooltip"/>
+                      </Supertip>
+                    <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                   <Action xsi:type="ExecuteFunction">
+                     <FunctionName>readdata</FunctionName>
+                      </Action>
+                  </Item> -->
+                   <!-- <Item id="Project.Menu.Item4">
+                      <Label resid="Project.Menu.Item4.Label"/>
+                      <Supertip>
+                      <Title resid="Project.Menu.Item4.Label"/>
+                      <Description resid="Project.Menu.Item4.Tooltip"/>
+                      </Supertip>
+                    <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                   <Action xsi:type="ExecuteFunction">
+                      <FunctionName>writeValue</FunctionName>
+                     </Action>
+                  </Item> -->
+                  </Items>
+                 </Control>
+              </Group>
+              <Label resid="BeaconDtx.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://www.contoso.com/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://www.contoso.com/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://www.contoso.com/assets/icon-80.png"/>
+
+        <bt:Image id="login.16x16" DefaultValue="https://www.contoso.com/assets/login-16.png"/>
+        <bt:Image id="login.32x32" DefaultValue="https://www.contoso.com/assets/login-32.png"/>
+        <bt:Image id="login.80x80" DefaultValue="https://www.contoso.com/assets/login-80.png"/>
+        
+        <bt:Image id="materialMasterGet.16x16" DefaultValue="https://www.contoso.com/assets/materialMasterGet-16.png"/>
+        <bt:Image id="materialMasterGet.32x32" DefaultValue="https://www.contoso.com/assets/materialMasterGet-32.png"/>
+        <bt:Image id="materialMasterGet.80x80" DefaultValue="https://www.contoso.com/assets/materialMasterGet-80.png"/>
+
+        <bt:Image id="materialMasterExport.16x16" DefaultValue="https://www.contoso.com/assets/materialMasterExport-16.png"/>
+        <bt:Image id="materialMasterExport.32x32" DefaultValue="https://www.contoso.com/assets/materialMasterExport-32.png"/>
+        <bt:Image id="materialMasterExport.80x80" DefaultValue="https://www.contoso.com/assets/materialMasterExport-80.png"/>
+      
+        <bt:Image id="materialMasterUpdate.16x16" DefaultValue="https://www.contoso.com/assets/materialMasterUpdate-16.png"/>
+        <bt:Image id="materialMasterUpdate.32x32" DefaultValue="https://www.contoso.com/assets/materialMasterUpdate-32.png"/>
+        <bt:Image id="materialMasterUpdate.80x80" DefaultValue="https://www.contoso.com/assets/materialMasterUpdate-80.png"/>
+
+        <bt:Image id="project.16x16" DefaultValue="https://www.contoso.com/assets/project-16.png"/>
+        <bt:Image id="project.32x32" DefaultValue="https://www.contoso.com/assets/project-32.png"/>
+        <bt:Image id="project.80x80" DefaultValue="https://www.contoso.com/assets/project-80.png"/>
+
+
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Functions.Script.Url" DefaultValue="https://www.contoso.com/functions.js"/>
+        <bt:Url id="Functions.Metadata.Url" DefaultValue="https://www.contoso.com/functions.json"/>
+        <bt:Url id="Functions.Page.Url" DefaultValue="https://www.contoso.com/functions.html"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://www.contoso.com/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://www.contoso.com/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Functions.Namespace" DefaultValue="CONTOSO"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
+        
+        <bt:String id="LoginButton.Label" DefaultValue="Login"/>
+        <bt:String id="LoginGroup.Label" DefaultValue="Authorisation"/>
+        <bt:String id="BeaconDtx.Label" DefaultValue="Beacon-DTX"/>
+        <bt:String id="BeaconDtx.SuperTip.Title" DefaultValue="Beacon-DTX"/>
+        <bt:String id="MaterialMaster.Label" DefaultValue="Material Master"/>
+        <bt:String id="MaterialMasterGet.Label" DefaultValue="Get"/>
+        <bt:String id="MaterialMasterExport.Label" DefaultValue="Export"/>
+        <bt:String id="MaterialMasterUpdate.Label" DefaultValue="Update"/>
+        <bt:String id="Project.Menu.Label" DefaultValue="Project"/>
+        <bt:String id="ProjectGroup.Label" DefaultValue="Project"/>
+        <bt:String id="Project.Menu.Item1.Label" DefaultValue="item 1"/>
+        <bt:String id="Project.Menu.Item2.Label" DefaultValue="item 2"/>
+        <bt:String id="Project.Menu.Item3.Label" DefaultValue="item 3"/>
+        <bt:String id="Project.Menu.Item4.Label" DefaultValue="item 4"/>
+       
+        
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started."/>
+        <bt:String id="LoginButton.Tooltip" DefaultValue="Click to Login"/>
+        <bt:String id="BeaconDtx.SuperTip.Description" DefaultValue="BEACON Digital Transformation for Excellence plugin"/>
+        <bt:String id="MaterialMasterGet.Tooltip" DefaultValue="Get Material Master Data into Excel "/>
+        <bt:String id="MaterialMasterExport.Tooltip" DefaultValue="Set Material Master Data into DTX"/>
+        <bt:String id="MaterialMasterUpdate.Tooltip" DefaultValue="Updates Material Master Data into DTX"/>
+        <bt:String id="Project.Menu.Tooltip" DefaultValue="Select Project to get data"/>
+        <bt:String id="Project.Menu.Item1.Tooltip" DefaultValue="tooltip for item 1 "/>
+        <bt:String id="Project.Menu.Item2.Tooltip" DefaultValue="tooltip for item 2 "/>
+        <bt:String id="Project.Menu.Item3.Tooltip" DefaultValue="tooltip for item 3 "/>
+        <bt:String id="Project.Menu.Item4.Tooltip" DefaultValue="tooltip for item 4 "/>
+      
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
