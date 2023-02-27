@@ -7,17 +7,28 @@
 
 Office.onReady(() => {
   // If needed, Office.js is ready to be called
-
-  Excel.run(async function (context) {
-    var myButton = context.workbook.commands.getByName("MaterialMasterUpdate");
-  
-    myButton.load("controlProperties");
-  
-    await context.sync();
-    myButton.controlProperties.size = "large";
-    myButton.controlProperties.align = "center";
-    return await context.sync();
-  });  
+  console.log("inside office addin beacon dtx");
+  enableButton();
+  function enableButton() {
+    Office.ribbon.requestUpdate({
+      tabs: [
+        {
+          id: "BeaconDtx",
+          groups: [
+            {
+              id: "MaterialMaster",
+              controls: [
+                {
+                  id: "MaterialMasterGet",
+                  enabled: false,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+  }
 });
 
 /**
@@ -31,28 +42,62 @@ function action(event) {
   event.completed();
 }
 function login(event) {
-// write login functiond=s here 
-console.log("inside the login ");
+  // write login functiond=s here
+  Office.context.ui.displayDialogAsync(
+    "https://localhost:3000/login.html",
+    { height: 62, width: 45, displayInIframe: true }
+
+    // TODO2: Add callback parameter.
+  );
   event.completed();
 }
 
 function MaterialMasterGet(event) {
-  // write MaterialMasterGet function statements over here 
+  // write MaterialMasterGet function statements over here
   console.log("inside the MaterialMasterGet ");
-    event.completed();
-  }
+  event.completed();
+}
 
-  function MaterialMasterExport (event) {
-    // write MaterialMasterExport function statements over here 
-    console.log("inside the MaterialMasterExport ");
-      event.completed();
-    }
-    function MaterialMasterUpdate (event) {
-      // write MaterialMasterExport function statements over here 
-      console.log("inside the MaterialMasterExport ");
-        event.completed();
-      }
+function MaterialMasterExport(event) {
+  // write MaterialMasterExport function statements over here
+  console.log("inside the MaterialMasterExport ");
+  event.completed();
+}
+function MaterialMasterUpdate(event) {
+  // write MaterialMasterExport function statements over here
+  console.log("inside the MaterialMasterUpdate ");
+  event.completed();
+}
 
+function bomGet(event) {
+  // write bomGet function statements over here
+  console.log("inside the bomGet ");
+  event.completed();
+}
+
+function bomUpdate(event) {
+  // write bomUpdate function statements over here
+  console.log("inside the bomUpdate ");
+  event.completed();
+}
+
+function bomCreate(event) {
+  // write bomCreate function statements over here
+  console.log("inside the bomCreate ");
+  event.completed();
+}
+
+function getFlatBom(event) {
+  // write getFlatBom function statements over here
+  console.log("inside the getFlatBom ");
+  event.completed();
+}
+
+function getProjectBom(event) {
+  // write getProjectBom function statements over here
+  console.log("inside the getProjectBom ");
+  event.completed();
+}
 function getGlobal() {
   return typeof self !== "undefined"
     ? self
@@ -67,7 +112,12 @@ const g = getGlobal();
 
 // the add-in command functions need to be available in global scope
 g.action = action;
-g.login = login
-g.MaterialMasterGet = MaterialMasterGet
-g.MaterialMasterExport = MaterialMasterExport
-g.MaterialMasterUpdate = MaterialMasterUpdate
+g.login = login;
+g.MaterialMasterGet = MaterialMasterGet;
+g.MaterialMasterExport = MaterialMasterExport;
+g.MaterialMasterUpdate = MaterialMasterUpdate;
+g.bomGet = bomGet;
+g.bomUpdate = bomUpdate;
+g.bomCreate = bomCreate;
+g.getFlatBom = getFlatBom;
+g.getProjectBom = getProjectBom;

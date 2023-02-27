@@ -17,7 +17,7 @@
   </Hosts>
   <Requirements>
     <Sets DefaultMinVersion="1.1">
-      <Set Name="CustomFunctionsRuntime" MinVersion="1.1"/>
+      <Set Name="SharedRuntime" MinVersion="1.1"/>
     </Sets>
   </Requirements>
   <DefaultSettings>
@@ -27,6 +27,9 @@
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Hosts>
       <Host xsi:type="Workbook">
+      <Runtimes>
+        <Runtime resid="Taskpane.Url" lifetime="long" />
+      </Runtimes>
         <AllFormFactors>
           <ExtensionPoint xsi:type="CustomFunctions">
             <Script>
@@ -42,11 +45,12 @@
           </ExtensionPoint>
         </AllFormFactors>
         <DesktopFormFactor>
-          <!-- <GetStarted>
-            <Title resid="GetStarted.Title"/>
+          <GetStarted>
+             <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
-            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
-          </GetStarted> -->
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/> 
+            <FunctionFile resid="Taskpane.Url"/>
+          </GetStarted>
           <FunctionFile resid="Commands.Url"/>
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
 
@@ -57,7 +61,7 @@
               <Description resid="BeaconDtx.SuperTip.Description" />
              </Tooltip>
 
-
+                <!-- login button starts  -->
               <Group id="LoginGroup">
                 <Label resid="LoginGroup.Label"/>
                 <Icon>
@@ -82,14 +86,19 @@
                 </Control>
               </Group>
 
+          <!-- login button ends  -->
 
+
+          <!-- Material Master grouop starts -->
                <Group id="MaterialMaster">
+               
                 <Label resid="MaterialMaster.Label"/>
                  <Icon>
                   <bt:Image size="16" resid="Icon.16x16"/>
                   <bt:Image size="32" resid="Icon.32x32"/>
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
+                <!-- get button -->
                 <Control xsi:type="Button" id="MaterialMasterGet">
                   <Label resid="MaterialMasterGet.Label"/>
                   <Supertip>
@@ -104,7 +113,10 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>MaterialMasterGet</FunctionName>
                     </Action>
+                    <Enabled>false</Enabled>
+                    <Visible>false</Visible> 
                 </Control>
+                <!-- export  -->
                 <Control xsi:type="Button" id="MaterialMasterExport">
                   <Label resid="MaterialMasterExport.Label"/>
                   <Supertip>
@@ -120,6 +132,7 @@
                     <FunctionName>MaterialMasterExport</FunctionName>
                     </Action>
                 </Control>
+                <!-- update button  -->
                  <Control xsi:type="Button" id="MaterialMasterUpdate">
                   <Label resid="MaterialMasterUpdate.Label"/>
                   <Supertip>
@@ -137,6 +150,10 @@
                     </Action>
                 </Control>
               </Group>
+          <!-- Material Master group starts -->
+
+
+              <!-- project group starts -->
                <Group id="ProjectGroup">
                 <Label resid="ProjectGroup.Label"/>
                 <Icon>
@@ -156,6 +173,7 @@
                     <bt:Image size="80" resid="project.80x80"/>
                   </Icon>
                     <Items>
+                    <!-- dropdown item 1  -->
                       <Item id="Project.Menu.Item1">
                       <Label resid="Project.Menu.Item1.Label"/>
                       <Supertip>
@@ -172,6 +190,7 @@
                     <SourceLocation resid="Taskpane.Url"/>
                   </Action>
                   </Item>
+                   <!-- dropdown item 2  -->
                    <Item id="Project.Menu.Item2">
                       <Label resid="Project.Menu.Item2.Label"/>
                       <Supertip>
@@ -187,8 +206,9 @@
                    <FunctionName>writeValue</FunctionName>
                    </Action>
                   </Item>
-                   <!-- <Item id="Project.Menu.Item3">
-                      <Label resid="Project.Menu.Ite3.Label"/>
+                   <!-- dropdown item 3  -->
+                   <Item id="Project.Menu.Item3">
+                      <Label resid="Project.Menu.Item3.Label"/>
                       <Supertip>
                       <Title resid="Project.Menu.Item3.Label"/>
                       <Description resid="Project.Menu.Item3.Tooltip"/>
@@ -201,8 +221,9 @@
                    <Action xsi:type="ExecuteFunction">
                      <FunctionName>readdata</FunctionName>
                       </Action>
-                  </Item> -->
-                   <!-- <Item id="Project.Menu.Item4">
+                  </Item>
+                   <!-- dropdown item 4  -->
+                   <Item id="Project.Menu.Item4">
                       <Label resid="Project.Menu.Item4.Label"/>
                       <Supertip>
                       <Title resid="Project.Menu.Item4.Label"/>
@@ -216,11 +237,179 @@
                    <Action xsi:type="ExecuteFunction">
                       <FunctionName>writeValue</FunctionName>
                      </Action>
-                  </Item> -->
+                  </Item>
                   </Items>
                  </Control>
               </Group>
+                <!-- project group ends -->
+
+              <!-- BOM group starts  -->
+            <Group id="BomGroup">
+                <Label resid="BomGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <!-- get button  -->
+                <Control xsi:type="Button" id="BomGroup.Get">
+                  <Label resid="BomGroup.Get.Label"/>
+                  <Supertip>
+                    <Title resid="BomGroup.Get.Label"/>
+                    <Description resid="BomGroup.Get.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="bomGet.16x16"/>
+                    <bt:Image size="32" resid="bomGet.32x32"/>
+                    <bt:Image size="80" resid="bomGet.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>bomGet</FunctionName>
+                    </Action>
+                </Control>
+                <!-- bom update button -->
+                 <Control xsi:type="Button" id="BomGroup.Update">
+                  <Label resid="BomGroup.Update.Label"/>
+                  <Supertip>
+                    <Title resid="BomGroup.Update.Label"/>
+                    <Description resid="BomGroup.Update.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="bomUpdate.16x16"/>
+                    <bt:Image size="32" resid="bomUpdate.32x32"/>
+                    <bt:Image size="80" resid="bomUpdate.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>bomUpdate</FunctionName>
+                    </Action>
+                </Control>
+                <!-- Bom Create button  -->
+                <Control xsi:type="Button" id="BomGroup.Create">
+                  <Label resid="BomGroup.Create.Label"/>
+                  <Supertip>
+                    <Title resid="BomGroup.Create.Label"/>
+                    <Description resid="BomGroup.Create.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="bomCreate.16x16"/>
+                    <bt:Image size="32" resid="bomCreate.32x32"/>
+                    <bt:Image size="80" resid="bomCreate.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>bomCreate</FunctionName>
+                    </Action>
+                </Control>
+                 <!--  bom  get flat bom button  -->
+                 <Control xsi:type="Button" id="BomGroup.GetFlatBom">
+                  <Label resid="BomGroup.GetFlatBom.Label"/>
+                  <Supertip>
+                    <Title resid="BomGroup.GetFlatBom.Label"/>
+                    <Description resid="BomGroup.GetFlatBom.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="getFlatBom.16x16"/>
+                    <bt:Image size="32" resid="getFlatBom.32x32"/>
+                    <bt:Image size="80" resid="getFlatBom.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>getFlatBom</FunctionName>
+                    </Action>
+                </Control>
+                <!-- Bom get project bom button  -->
+                 <Control xsi:type="Button" id="BomGroup.GetProjectBom">
+                  <Label resid="BomGroup.GetProjectBom.Label"/>
+                  <Supertip>
+                    <Title resid="BomGroup.GetProjectBom.Label"/>
+                    <Description resid="BomGroup.GetProjectBom.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="getProjectBom.16x16"/>
+                    <bt:Image size="32" resid="getProjectBom.32x32"/>
+                    <bt:Image size="80" resid="getProjectBom.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>getProjectBom</FunctionName>
+                    </Action>
+                </Control>
+              </Group>
+              <!-- BOM group ends -->
+              <!-- Form group starts  -->
+               <Group id="FormGroup">
+                <Label resid="FormGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <!-- Form configure button -->
+                <Control xsi:type="Button" id="FormGroup.Configure">
+                  <Label resid="FormGroup.Configure.Label"/>
+                  <Supertip>
+                    <Title resid="FormGroup.Configure.Label"/>
+                    <Description resid="FormGroup.Configure.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="formConfigure.16x16"/>
+                    <bt:Image size="32" resid="formConfigure.32x32"/>
+                    <bt:Image size="80" resid="formConfigure.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>formConfigure</FunctionName>
+                    </Action>
+                </Control>
+                <!-- Form Map button  -->
+                <Control xsi:type="Button" id="FormGroup.Map">
+                  <Label resid="FormGroup.Map.Label"/>
+                  <Supertip>
+                    <Title resid="FormGroup.Map.Label"/>
+                    <Description resid="FormGroup.Map.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="formMap.16x16"/>
+                    <bt:Image size="32" resid="formMap.32x32"/>
+                    <bt:Image size="80" resid="formMap.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>formMap</FunctionName>
+                    </Action>
+                </Control>
+                <!--  Form Save Mapping button -->
+                <Control xsi:type="Button" id="FormGroup.SaveMapping">
+                  <Label resid="FormGroup.SaveMapping.Label"/>
+                  <Supertip>
+                    <Title resid="FormGroup.SaveMapping.Label"/>
+                    <Description resid="FormGroup.SaveMapping.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="formSaveMapping.16x16"/>
+                    <bt:Image size="32" resid="formSaveMapping.32x32"/>
+                    <bt:Image size="80" resid="formSaveMapping.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>formSaveMapping</FunctionName>
+                    </Action>
+                </Control>
+                <!-- Form Get Form button  -->
+                <Control xsi:type="Button" id="FormGroup.GetForm">
+                  <Label resid="FormGroup.GetForm.Label"/>
+                  <Supertip>
+                    <Title resid="FormGroup.GetForm.Label"/>
+                    <Description resid="FormGroup.GetForm.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="formGetForm.16x16"/>
+                    <bt:Image size="32" resid="formGetForm.32x32"/>
+                    <bt:Image size="80" resid="formGetForm.80x80"/>
+                  </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                    <FunctionName>formGetForm</FunctionName>
+                    </Action>
+                </Control>
+              </Group>
+              <!-- Form group ends  -->
               <Label resid="BeaconDtx.Label"/>
+           
+           
             </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
@@ -252,6 +441,42 @@
         <bt:Image id="project.32x32" DefaultValue="https://localhost:3000/assets/project-32.png"/>
         <bt:Image id="project.80x80" DefaultValue="https://localhost:3000/assets/project-80.png"/>
 
+        <bt:Image id="bomGet.16x16" DefaultValue="https://localhost:3000/assets/bomGet-16.png"/>
+        <bt:Image id="bomGet.32x32" DefaultValue="https://localhost:3000/assets/bomGet-32.png"/>
+        <bt:Image id="bomGet.80x80" DefaultValue="https://localhost:3000/assets/bomGet-80.png"/>
+
+        <bt:Image id="bomUpdate.16x16" DefaultValue="https://localhost:3000/assets/bomUpdate-16.png"/>
+        <bt:Image id="bomUpdate.32x32" DefaultValue="https://localhost:3000/assets/bomUpdate-32.png"/>
+        <bt:Image id="bomUpdate.80x80" DefaultValue="https://localhost:3000/assets/bomUpdate-80.png"/>
+
+        <bt:Image id="bomCreate.16x16" DefaultValue="https://localhost:3000/assets/bomCreate-16.png"/>
+        <bt:Image id="bomCreate.32x32" DefaultValue="https://localhost:3000/assets/bomCreate-32.png"/>
+        <bt:Image id="bomCreate.80x80" DefaultValue="https://localhost:3000/assets/bomCreate-80.png"/>
+
+        <bt:Image id="getFlatBom.16x16" DefaultValue="https://localhost:3000/assets/getFlatBom-16.png"/>
+        <bt:Image id="getFlatBom.32x32" DefaultValue="https://localhost:3000/assets/getFlatBom-32.png"/>
+        <bt:Image id="getFlatBom.80x80" DefaultValue="https://localhost:3000/assets/getFlatBom-80.png"/>
+
+        <bt:Image id="getProjectBom.16x16" DefaultValue="https://localhost:3000/assets/getProjectBom-16.png"/>
+        <bt:Image id="getProjectBom.32x32" DefaultValue="https://localhost:3000/assets/getProjectBom-32.png"/>
+        <bt:Image id="getProjectBom.80x80" DefaultValue="https://localhost:3000/assets/getProjectBom-80.png"/>
+
+        <bt:Image id="formConfigure.16x16" DefaultValue="https://localhost:3000/assets/formConfigure-16.png"/>
+        <bt:Image id="formConfigure.32x32" DefaultValue="https://localhost:3000/assets/formConfigure-32.png"/>
+        <bt:Image id="formConfigure.80x80" DefaultValue="https://localhost:3000/assets/formConfigure-80.png"/>
+
+        <bt:Image id="formMap.16x16" DefaultValue="https://localhost:3000/assets/formMap-16.png"/>
+        <bt:Image id="formMap.32x32" DefaultValue="https://localhost:3000/assets/formMap-32.png"/>
+        <bt:Image id="formMap.80x80" DefaultValue="https://localhost:3000/assets/formMap-80.png"/>
+
+        <bt:Image id="formSaveMapping.16x16" DefaultValue="https://localhost:3000/assets/formSaveMapping-16.png"/>
+        <bt:Image id="formSaveMapping.32x32" DefaultValue="https://localhost:3000/assets/formSaveMapping-32.png"/>
+        <bt:Image id="formSaveMapping.80x80" DefaultValue="https://localhost:3000/assets/formSaveMapping-80.png"/>
+
+        <bt:Image id="formGetForm.16x16" DefaultValue="https://localhost:3000/assets/formGetForm-16.png"/>
+        <bt:Image id="formGetForm.32x32" DefaultValue="https://localhost:3000/assets/formGetForm-32.png"/>
+        <bt:Image id="formGetForm.80x80" DefaultValue="https://localhost:3000/assets/formGetForm-80.png"/>
+
 
       </bt:Images>
       <bt:Urls>
@@ -261,6 +486,9 @@
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
+       
+ 
+      
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="Functions.Namespace" DefaultValue="CONTOSO"/>
@@ -276,12 +504,27 @@
         <bt:String id="MaterialMasterUpdate.Label" DefaultValue="Update"/>
         <bt:String id="Project.Menu.Label" DefaultValue="Project"/>
         <bt:String id="ProjectGroup.Label" DefaultValue="Project"/>
+
         <bt:String id="Project.Menu.Item1.Label" DefaultValue="item 1"/>
         <bt:String id="Project.Menu.Item2.Label" DefaultValue="item 2"/>
         <bt:String id="Project.Menu.Item3.Label" DefaultValue="item 3"/>
         <bt:String id="Project.Menu.Item4.Label" DefaultValue="item 4"/>
+
+        <bt:String id="BomGroup.Label" DefaultValue="BOM"/>
+        <bt:String id="BomGroup.Get.Label" DefaultValue="Get"/>
+        <bt:String id="BomGroup.Update.Label" DefaultValue="Update"/>
+        <bt:String id="BomGroup.Create.Label" DefaultValue="Create"/>
+        <bt:String id="BomGroup.GetFlatBom.Label" DefaultValue="Get Flat BOM"/>
+        <bt:String id="BomGroup.GetProjectBom.Label" DefaultValue="Get Project BOM"/>
+
+         <bt:String id="FormGroup.Label" DefaultValue="Form"/>
+         <bt:String id="FormGroup.Configure.Label" DefaultValue="Configure"/>
+         <bt:String id="FormGroup.Map.Label" DefaultValue="Map"/>
+         <bt:String id="FormGroup.SaveMapping.Label" DefaultValue="Save Mapping"/>
+          <bt:String id="FormGroup.GetForm.Label" DefaultValue="Get Form"/>
        
-        
+
+
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started."/>
@@ -290,11 +533,24 @@
         <bt:String id="MaterialMasterGet.Tooltip" DefaultValue="Get Material Master Data into Excel "/>
         <bt:String id="MaterialMasterExport.Tooltip" DefaultValue="Set Material Master Data into DTX"/>
         <bt:String id="MaterialMasterUpdate.Tooltip" DefaultValue="Updates Material Master Data into DTX"/>
+        
         <bt:String id="Project.Menu.Tooltip" DefaultValue="Select Project to get data"/>
         <bt:String id="Project.Menu.Item1.Tooltip" DefaultValue="tooltip for item 1 "/>
         <bt:String id="Project.Menu.Item2.Tooltip" DefaultValue="tooltip for item 2 "/>
         <bt:String id="Project.Menu.Item3.Tooltip" DefaultValue="tooltip for item 3 "/>
         <bt:String id="Project.Menu.Item4.Tooltip" DefaultValue="tooltip for item 4 "/>
+        
+        <bt:String id="BomGroup.Get.Tooltip" DefaultValue="Get Product BOM"/>
+        <bt:String id="BomGroup.Update.Tooltip" DefaultValue="Update Product BOM"/>
+        <bt:String id="BomGroup.Create.Tooltip" DefaultValue="Create Product BOM"/>
+        <bt:String id="BomGroup.GetFlatBom.Tooltip" DefaultValue="Get Flat BOM"/>
+        <bt:String id="BomGroup.GetProjectBom.Tooltip" DefaultValue="Get Project BOM"/>
+        
+        <bt:String id="FormGroup.Configure.Tooltip" DefaultValue="Configure form template"/>
+        <bt:String id="FormGroup.Map.Tooltip" DefaultValue="Map Excel field"/>
+        <bt:String id="FormGroup.SaveMapping.Tooltip" DefaultValue="Save Mapping"/>
+        <bt:String id="FormGroup.GetForm.Tooltip" DefaultValue="Get Specific Form"/>
+     
       
       </bt:LongStrings>
     </Resources>
