@@ -7,27 +7,6 @@
 Office.onReady(() => {
   // If needed, Office.js is ready to be called
   console.log("inside office addin beacon dtx");
-  enableButton();
-  function enableButton() {
-    Office.ribbon.requestUpdate({
-      tabs: [
-        {
-          id: "BeaconDtx",
-          groups: [
-            {
-              id: "MaterialMaster",
-              controls: [
-                {
-                  id: "MaterialMasterGet",
-                  enabled: true,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-  }
 });
 // The initialize function must be run each time a new page is loaded
 Office.onReady(() => {
@@ -42,7 +21,6 @@ export async function run() {
       /**
        * Insert your Excel code here
        */
-        enableButton();
       const range = context.workbook.getSelectedRange();
 
       // Read the range address
@@ -57,24 +35,4 @@ export async function run() {
   } catch (error) {
     console.error(error);
   }
-}
-function enableButton() {
-  Office.ribbon.requestUpdate({
-    tabs: [
-      {
-        id: "BeaconDtx",
-        groups: [
-          {
-            id: "MaterialMaster",
-            controls: [
-              {
-                id: "MaterialMasterGet",
-                enabled: false,
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  });
 }

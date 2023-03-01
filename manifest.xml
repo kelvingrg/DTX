@@ -28,16 +28,16 @@
     <Hosts>
       <Host xsi:type="Workbook">
       <Runtimes>
-        <Runtime resid="Taskpane.Url" lifetime="long" />
+        <Runtime resid="SharedRuntime.Url" lifetime="long" />
       </Runtimes>
         <AllFormFactors>
           <ExtensionPoint xsi:type="CustomFunctions">
             <Script>
               <SourceLocation resid="Functions.Script.Url"/>
             </Script>
-            <Page>
-              <SourceLocation resid="Functions.Page.Url"/>
-            </Page>
+             <Page> 
+              <SourceLocation resid="SharedRuntime.Url"/> 
+               </Page> 
             <Metadata>
               <SourceLocation resid="Functions.Metadata.Url"/>
             </Metadata>
@@ -45,13 +45,13 @@
           </ExtensionPoint>
         </AllFormFactors>
         <DesktopFormFactor>
-          <GetStarted>
+          <!-- <GetStarted>
              <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/> 
             <FunctionFile resid="Taskpane.Url"/>
-          </GetStarted>
-          <FunctionFile resid="Commands.Url"/>
+          </GetStarted> -->
+           <FunctionFile resid="SharedRuntime.Url" /> 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
 
 
@@ -114,7 +114,6 @@
                     <FunctionName>MaterialMasterGet</FunctionName>
                     </Action>
                     <Enabled>false</Enabled>
-                    <Visible>false</Visible> 
                 </Control>
                 <!-- export  -->
                 <Control xsi:type="Button" id="MaterialMasterExport">
@@ -131,6 +130,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>MaterialMasterExport</FunctionName>
                     </Action>
+                    <Enabled>false</Enabled>
                 </Control>
                 <!-- update button  -->
                  <Control xsi:type="Button" id="MaterialMasterUpdate">
@@ -148,6 +148,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>MaterialMasterUpdate</FunctionName>
                     </Action>
+                    <Enabled>false</Enabled>
                 </Control>
               </Group>
           <!-- Material Master group starts -->
@@ -161,7 +162,7 @@
                   <bt:Image size="32" resid="Icon.32x32"/>
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
-                 <Control xsi:type="Menu" id="Project.Menu">
+                 <Control xsi:type="Menu" id="Project.Menu" >
                               <Label resid="Project.Menu.Label"/>
                               <Supertip>
                               <Title resid="Project.Menu.Label"/>
@@ -237,8 +238,10 @@
                    <Action xsi:type="ExecuteFunction">
                       <FunctionName>writeValue</FunctionName>
                      </Action>
+                      <Enabled>false</Enabled>
                   </Item>
                   </Items>
+                   
                  </Control>
               </Group>
                 <!-- project group ends -->
@@ -266,6 +269,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>bomGet</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
                 <!-- bom update button -->
                  <Control xsi:type="Button" id="BomGroup.Update">
@@ -282,6 +286,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>bomUpdate</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
                 <!-- Bom Create button  -->
                 <Control xsi:type="Button" id="BomGroup.Create">
@@ -298,6 +303,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>bomCreate</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
                  <!--  bom  get flat bom button  -->
                  <Control xsi:type="Button" id="BomGroup.GetFlatBom">
@@ -314,6 +320,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>getFlatBom</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
                 <!-- Bom get project bom button  -->
                  <Control xsi:type="Button" id="BomGroup.GetProjectBom">
@@ -330,6 +337,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>getProjectBom</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
               </Group>
               <!-- BOM group ends -->
@@ -356,6 +364,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>formConfigure</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
                 <!-- Form Map button  -->
                 <Control xsi:type="Button" id="FormGroup.Map">
@@ -372,6 +381,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>formMap</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
                 <!--  Form Save Mapping button -->
                 <Control xsi:type="Button" id="FormGroup.SaveMapping">
@@ -388,6 +398,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>formSaveMapping</FunctionName>
                     </Action>
+                      <Enabled>false</Enabled>
                 </Control>
                 <!-- Form Get Form button  -->
                 <Control xsi:type="Button" id="FormGroup.GetForm">
@@ -404,6 +415,7 @@
                     <Action xsi:type="ExecuteFunction">
                     <FunctionName>formGetForm</FunctionName>
                     </Action>
+                    <Enabled>false</Enabled>
                 </Control>
               </Group>
               <!-- Form group ends  -->
@@ -486,6 +498,7 @@
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
+        <bt:Url id="SharedRuntime.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
        
  
       

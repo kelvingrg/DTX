@@ -8,27 +8,6 @@
 Office.onReady(() => {
   // If needed, Office.js is ready to be called
   console.log("inside office addin beacon dtx");
-  enableButton();
-  function enableButton() {
-    Office.ribbon.requestUpdate({
-      tabs: [
-        {
-          id: "BeaconDtx",
-          groups: [
-            {
-              id: "MaterialMaster",
-              controls: [
-                {
-                  id: "MaterialMasterGet",
-                  enabled: false,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-  }
 });
 
 /**
@@ -45,10 +24,18 @@ function login(event) {
   // write login functiond=s here
   Office.context.ui.displayDialogAsync(
     "https://localhost:3000/login.html",
-    { height: 62, width: 45, displayInIframe: true }
-
-    // TODO2: Add callback parameter.
+    { height: 62, width: 45, displayInIframe: true },
+    function (asyncResult) {
+      dialog = asyncResult.value;
+      dialog.addEventHandler(Office.EventType.DialogMessageReceived, processMessage);
+    }
   );
+  const processMessage = (arg) => {
+    console.log(arg.message);
+    localStorage.setItem("beaconToken", arg.message);
+    dialog.close();
+    enableAllKeys();
+  };
   event.completed();
 }
 
@@ -98,7 +85,108 @@ function getProjectBom(event) {
   console.log("inside the getProjectBom ");
   event.completed();
 }
+
+function enableAllKeys() {
+  Office.ribbon.requestUpdate({
+    tabs: [
+      {
+        id: "BeaconDtx",
+        groups: [
+          {
+            id: "LoginGroup",
+            controls: [
+              {
+                id: "LoginButton",
+                abel: "Logout",
+                Icon: [
+                  {
+                    size: 16,
+                    sourceLocation: "https://localhost:3000/assets/logout-16.png",
+                  },
+                  {
+                    size: 32,
+                    sourceLocation: "https://localhost:3000/assets/logout-32.png",
+                  },
+                  {
+                    size: 80,
+                    sourceLocation: "https://localhost:3000/assets/logout-80.png",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: "MaterialMaster",
+            controls: [
+              {
+                id: "MaterialMasterGet",
+                enabled: true,
+              },
+              {
+                id: "MaterialMasterExport",
+                enabled: true,
+              },
+              {
+                id: "MaterialMasterUpdate",
+                enabled: true,
+              },
+            ],
+          },
+
+          {
+            id: "BomGroup",
+            controls: [
+              {
+                id: "BomGroup.Get",
+                enabled: true,
+              },
+              {
+                id: "BomGroup.Update",
+                enabled: true,
+              },
+              {
+                id: "BomGroup.Create",
+                enabled: true,
+              },
+              {
+                id: "BomGroup.GetFlatBom",
+                enabled: true,
+              },
+              {
+                id: "BomGroup.GetProjectBom",
+                enabled: true,
+              },
+            ],
+          },
+          {
+            id: "FormGroup",
+            controls: [
+              {
+                id: "FormGroup.Configure",
+                enabled: true,
+              },
+              {
+                id: "FormGroup.Map",
+                enabled: true,
+              },
+              {
+                id: "FormGroup.SaveMapping",
+                enabled: true,
+              },
+              {
+                id: "FormGroup.GetForm",
+                enabled: true,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
+}
+
 function getGlobal() {
+  console.log("inside global function");
   return typeof self !== "undefined"
     ? self
     : typeof window !== "undefined"

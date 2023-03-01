@@ -34,25 +34,7 @@ import axios from "axios";
       .post("https://dev-be.beacon-dtx.com/user/login", { email: email, password: password })
       .then((response) => {
         console.log("login success full ", response.data.message);
-        Office.ribbon.requestUpdate({
-          tabs: [
-            {
-              id: "BeaconDtx",
-              groups: [
-                {
-                  id: "MaterialMaster",
-                  controls: [
-                    {
-                      id: "MaterialMasterGet",
-                      enabled: true,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        });
-        Office.context.ui.messageParent(formdata);
+        Office.context.ui.messageParent(response.data.message);
       })
       .catch((response) => {
         document.getElementById("message").innerHTML = response.response.data.message;
