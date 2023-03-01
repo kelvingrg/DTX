@@ -56,33 +56,36 @@
 
 
             <CustomTab id="BeaconDtx">
+
              <Tooltip>
               <Title resid="BeaconDtx.SuperTip.Title" />
               <Description resid="BeaconDtx.SuperTip.Description" />
              </Tooltip>
 
                 <!-- login button starts  -->
-              <Group id="LoginGroup">
-                <Label resid="LoginGroup.Label"/>
+              <Group id="AuthGroup">
+                <Label resid="AuthGroup.Label"/>
                 <Icon>
                   <bt:Image size="16" resid="Icon.16x16"/>
                   <bt:Image size="32" resid="Icon.32x32"/>
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
-                <Control xsi:type="Button" id="LoginButton">
-                  <Label resid="LoginButton.Label"/>
+                <Control xsi:type="Button" id="Authentication">
+                  <Label resid="Authentication.Label"/>
                   <Supertip>
-                    <Title resid="LoginButton.Label"/>
-                    <Description resid="LoginButton.Tooltip"/>
+                    <Title resid="Authentication.Label"/>
+                    <Description resid="Authentication.Tooltip"/>
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="login.16x16"/>
-                    <bt:Image size="32" resid="login.32x32"/>
-                    <bt:Image size="80" resid="login.80x80"/>
+                    <bt:Image size="16" resid="authentication.16x16"/>
+                    <bt:Image size="32" resid="authentication.32x32"/>
+                    <bt:Image size="80" resid="authentication.80x80"/>
                   </Icon>
-                    <Action xsi:type="ExecuteFunction">
-                    <FunctionName>login</FunctionName>
+              <Action xsi:type="ExecuteFunction">
+                    <FunctionName>power</FunctionName>
                     </Action>
+                    <Enabled>true</Enabled>
+
                 </Control>
               </Group>
 
@@ -421,7 +424,7 @@
               <!-- Form group ends  -->
               <Label resid="BeaconDtx.Label"/>
            
-           
+           <InsertBefore>TabHome</InsertBefore>
             </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
@@ -432,10 +435,18 @@
         <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
         <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
         <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
-
+        
         <bt:Image id="login.16x16" DefaultValue="https://localhost:3000/assets/login-16.png"/>
         <bt:Image id="login.32x32" DefaultValue="https://localhost:3000/assets/login-32.png"/>
         <bt:Image id="login.80x80" DefaultValue="https://localhost:3000/assets/login-80.png"/>
+
+        <bt:Image id="logout.16x16" DefaultValue="https://localhost:3000/assets/logout-16.png"/>
+        <bt:Image id="logout.32x32" DefaultValue="https://localhost:3000/assets/logout-32.png"/>
+        <bt:Image id="logout.80x80" DefaultValue="https://localhost:3000/assets/logout-80.png"/>
+
+        <bt:Image id="authentication.16x16" DefaultValue="https://localhost:3000/assets/authentication-16.png"/>
+        <bt:Image id="authentication.32x32" DefaultValue="https://localhost:3000/assets/authentication-32.png"/>
+        <bt:Image id="authentication.80x80" DefaultValue="https://localhost:3000/assets/authentication-80.png"/>
         
         <bt:Image id="materialMasterGet.16x16" DefaultValue="https://localhost:3000/assets/materialMasterGet-16.png"/>
         <bt:Image id="materialMasterGet.32x32" DefaultValue="https://localhost:3000/assets/materialMasterGet-32.png"/>
@@ -507,8 +518,8 @@
         <bt:String id="Functions.Namespace" DefaultValue="CONTOSO"/>
         <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
         
-        <bt:String id="LoginButton.Label" DefaultValue="Login"/>
-        <bt:String id="LoginGroup.Label" DefaultValue="Authorisation"/>
+       
+        <bt:String id="AuthGroup.Label" DefaultValue="Authorisation"/>
         <bt:String id="BeaconDtx.Label" DefaultValue="Beacon-DTX"/>
         <bt:String id="BeaconDtx.SuperTip.Title" DefaultValue="Beacon-DTX"/>
         <bt:String id="MaterialMaster.Label" DefaultValue="Material Master"/>
@@ -517,6 +528,11 @@
         <bt:String id="MaterialMasterUpdate.Label" DefaultValue="Update"/>
         <bt:String id="Project.Menu.Label" DefaultValue="Project"/>
         <bt:String id="ProjectGroup.Label" DefaultValue="Project"/>
+        
+        <bt:String id="Authentication.Label" DefaultValue=" "/>
+        <bt:String id="Authentication.Login.Label" DefaultValue="Login"/>
+        <bt:String id="Authentication.Logout.Label" DefaultValue="Logout"/>
+
 
         <bt:String id="Project.Menu.Item1.Label" DefaultValue="item 1"/>
         <bt:String id="Project.Menu.Item2.Label" DefaultValue="item 2"/>
@@ -541,11 +557,14 @@
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started."/>
-        <bt:String id="LoginButton.Tooltip" DefaultValue="Click to Login"/>
+        <bt:String id="Authentication.Tooltip" DefaultValue="Click to Login"/>
         <bt:String id="BeaconDtx.SuperTip.Description" DefaultValue="BEACON Digital Transformation for Excellence plugin"/>
         <bt:String id="MaterialMasterGet.Tooltip" DefaultValue="Get Material Master Data into Excel "/>
         <bt:String id="MaterialMasterExport.Tooltip" DefaultValue="Set Material Master Data into DTX"/>
         <bt:String id="MaterialMasterUpdate.Tooltip" DefaultValue="Updates Material Master Data into DTX"/>
+        
+        <bt:String id="Authentication.Login.Tooltip" DefaultValue="Login into Beacon-DTX"/>
+        <bt:String id="Authentication.Logout.Tooltip" DefaultValue="Logout from Beacon-DTX"/>
         
         <bt:String id="Project.Menu.Tooltip" DefaultValue="Select Project to get data"/>
         <bt:String id="Project.Menu.Item1.Tooltip" DefaultValue="tooltip for item 1 "/>

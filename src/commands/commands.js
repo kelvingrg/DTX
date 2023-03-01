@@ -36,9 +36,37 @@ function login(event) {
     dialog.close();
     enableAllKeys();
   };
+}
+function logout() {
+  Office.context.ui.displayDialogAsync(
+    "https://localhost:3000/logout.html",
+    { height: 50, width: 35, displayInIframe: true },
+    function (asyncResult) {
+      dialog = asyncResult.value;
+      dialog.addEventHandler(Office.EventType.DialogMessageReceived, logoutConfirm);
+    }
+  );
+  const logoutConfirm = (arg) => {
+    console.log(arg.message);
+    if (arg.message === "logout") {
+      dialog.close();
+      disableAllButtons();
+      localStorage.removeItem("beaconToken");
+    } else {
+      dialog.close();
+    }
+  };
+}
+async function power(event) {
+  let beaconToken = localStorage.getItem("beaconToken");
+  console.log(beaconToken, "beaconToken**********");
+  if (beaconToken) {
+    logout();
+  } else {
+    login();
+  }
   event.completed();
 }
-
 function MaterialMasterGet(event) {
   // write MaterialMasterGet function statements over here
   console.log("inside the MaterialMasterGet ");
@@ -92,29 +120,29 @@ function enableAllKeys() {
       {
         id: "BeaconDtx",
         groups: [
-          {
-            id: "LoginGroup",
-            controls: [
-              {
-                id: "LoginButton",
-                abel: "Logout",
-                Icon: [
-                  {
-                    size: 16,
-                    sourceLocation: "https://localhost:3000/assets/logout-16.png",
-                  },
-                  {
-                    size: 32,
-                    sourceLocation: "https://localhost:3000/assets/logout-32.png",
-                  },
-                  {
-                    size: 80,
-                    sourceLocation: "https://localhost:3000/assets/logout-80.png",
-                  },
-                ],
-              },
-            ],
-          },
+          // {
+          //   id: "LoginGroup",
+          //   controls: [
+          //     {
+          //       id: "LoginButton",
+          //       abel: "Logout",
+          //       Icon: [
+          //         {
+          //           size: 16,
+          //           sourceLocation: "https://localhost:3000/assets/logout-16.png",
+          //         },
+          //         {
+          //           size: 32,
+          //           sourceLocation: "https://localhost:3000/assets/logout-32.png",
+          //         },
+          //         {
+          //           size: 80,
+          //           sourceLocation: "https://localhost:3000/assets/logout-80.png",
+          //         },
+          //       ],
+          //     },
+          //   ],
+          // },
           {
             id: "MaterialMaster",
             controls: [
@@ -185,6 +213,97 @@ function enableAllKeys() {
   });
 }
 
+function disableAllButtons() {
+  Office.ribbon.requestUpdate({
+    tabs: [
+      {
+        id: "BeaconDtx",
+        groups: [
+          {
+            id: "MaterialMaster",
+            controls: [
+              {
+                id: "MaterialMasterGet",
+                enabled: false,
+              },
+              {
+                id: "MaterialMasterExport",
+                enabled: false,
+              },
+              {
+                id: "MaterialMasterUpdate",
+                enabled: false,
+              },
+            ],
+          },
+          {
+            id: "AuthGroup",
+            controls: [
+              {
+                id: "Authentication",
+                item: [
+                  { id: "Authentication.Login", enabled: true },
+                  {
+                    id: "Authentication.Logout",
+                    enabled: false,
+                  },
+                ],
+              },
+            ],
+          },
+
+          {
+            id: "BomGroup",
+            controls: [
+              {
+                id: "BomGroup.Get",
+                enabled: false,
+              },
+              {
+                id: "BomGroup.Update",
+                enabled: false,
+              },
+              {
+                id: "BomGroup.Create",
+                enabled: false,
+              },
+              {
+                id: "BomGroup.GetFlatBom",
+                enabled: false,
+              },
+              {
+                id: "BomGroup.GetProjectBom",
+                enabled: false,
+              },
+            ],
+          },
+          {
+            id: "FormGroup",
+            controls: [
+              {
+                id: "FormGroup.Configure",
+                enabled: false,
+              },
+              {
+                id: "FormGroup.Map",
+                enabled: false,
+              },
+              {
+                id: "FormGroup.SaveMapping",
+                enabled: false,
+              },
+              {
+                id: "FormGroup.GetForm",
+                enabled: false,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
+}
+
 function getGlobal() {
   console.log("inside global function");
   return typeof self !== "undefined"
@@ -201,6 +320,7 @@ const g = getGlobal();
 // the add-in command functions need to be available in global scope
 g.action = action;
 g.login = login;
+g.logout = logout;
 g.MaterialMasterGet = MaterialMasterGet;
 g.MaterialMasterExport = MaterialMasterExport;
 g.MaterialMasterUpdate = MaterialMasterUpdate;
@@ -209,3 +329,4 @@ g.bomUpdate = bomUpdate;
 g.bomCreate = bomCreate;
 g.getFlatBom = getFlatBom;
 g.getProjectBom = getProjectBom;
+g.power = power;

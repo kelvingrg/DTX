@@ -23,7 +23,6 @@ import axios from "axios";
 
 /* eslint-disable no-undef */
 (async () => {
-  await Office.onReady();
   $("#submit").click(function (e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
     console.log("reached inside login fn");

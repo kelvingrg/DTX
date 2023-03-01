@@ -2,12 +2,11 @@
  * Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
-
+(function () {
+  console.log("self invoked function get executed");
+})();
 /* global console, document, Excel, Office */
-Office.onReady(() => {
-  // If needed, Office.js is ready to be called
-  console.log("inside office addin beacon dtx");
-});
+
 // The initialize function must be run each time a new page is loaded
 Office.onReady(() => {
   document.getElementById("sideload-msg").style.display = "none";
