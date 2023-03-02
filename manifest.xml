@@ -45,12 +45,12 @@
           </ExtensionPoint>
         </AllFormFactors>
         <DesktopFormFactor>
-          <!-- <GetStarted>
+          <GetStarted>
              <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/> 
             <FunctionFile resid="Taskpane.Url"/>
-          </GetStarted> -->
+          </GetStarted>
            <FunctionFile resid="SharedRuntime.Url" /> 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
 
@@ -84,8 +84,12 @@
               <Action xsi:type="ExecuteFunction">
                     <FunctionName>power</FunctionName>
                     </Action>
-                    <Enabled>true</Enabled>
-
+                   
+                    <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>Office.AutoShowTaskpaneWithDocument</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                        </Action>
+            
                 </Control>
               </Group>
 
@@ -423,8 +427,6 @@
               </Group>
               <!-- Form group ends  -->
               <Label resid="BeaconDtx.Label"/>
-           
-           <InsertBefore>TabHome</InsertBefore>
             </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>

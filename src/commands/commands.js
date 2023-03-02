@@ -20,7 +20,7 @@ function action(event) {
   // Be sure to indicate when the add-in command function is complete
   event.completed();
 }
-function login(event) {
+function login() {
   // write login functiond=s here
   Office.context.ui.displayDialogAsync(
     "https://localhost:3000/login.html",
@@ -52,9 +52,8 @@ function logout() {
       dialog.close();
       disableAllButtons();
       localStorage.removeItem("beaconToken");
-    } else {
-      dialog.close();
     }
+    dialog.close();
   };
 }
 async function power(event) {

@@ -54,9 +54,18 @@ body{
 }
 
 .close {
-    background-color:rgb(220, 230, 192);
+   
    
 }
 .logout{
-background-color: rgb(255, 213, 77);
+background-color: rgb(84, 166, 253);
 }
+
+.logout:hover{
+    background-color:#d3a22b
+    }
+
+    h5{
+        font-size:large;
+        font-weight: 200;
+    }

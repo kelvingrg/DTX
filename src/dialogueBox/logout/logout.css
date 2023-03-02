@@ -58,5 +58,14 @@ body{
    
 }
 .logout{
-background-color: rgb(107, 92, 243);
+background-color: rgb(84, 166, 253);
 }
+
+.logout:hover{
+    background-color:#d3a22b
+    }
+
+    h5{
+        font-size:large;
+        font-weight: 200;
+    }
