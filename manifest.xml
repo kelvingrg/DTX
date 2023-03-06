@@ -84,12 +84,6 @@
               <Action xsi:type="ExecuteFunction">
                     <FunctionName>power</FunctionName>
                     </Action>
-                   
-                    <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>Office.AutoShowTaskpaneWithDocument</TaskpaneId>
-                    <SourceLocation resid="Taskpane.Url" />
-                        </Action>
-            
                 </Control>
               </Group>
 

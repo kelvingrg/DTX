@@ -84,12 +84,6 @@
               <Action xsi:type="ExecuteFunction">
                     <FunctionName>power</FunctionName>
                     </Action>
-                   
-                    <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>Office.AutoShowTaskpaneWithDocument</TaskpaneId>
-                    <SourceLocation resid="Taskpane.Url" />
-                        </Action>
-            
                 </Control>
               </Group>
 
@@ -427,8 +421,6 @@
               </Group>
               <!-- Form group ends  -->
               <Label resid="BeaconDtx.Label"/>
-           
-           <InsertBefore>TabHome</InsertBefore>
             </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>

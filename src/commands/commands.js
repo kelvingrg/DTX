@@ -4,6 +4,7 @@
  */
 
 /* global global, Office, self, window */
+const { BASE_URL } = require('../config');
 
 Office.onReady(() => {
   // If needed, Office.js is ready to be called
@@ -23,7 +24,7 @@ function action(event) {
 function login() {
   // write login functiond=s here
   Office.context.ui.displayDialogAsync(
-    "https://localhost:3000/login.html",
+    `https://localhost:3000/login.html`,
     { height: 62, width: 45, displayInIframe: true },
     function (asyncResult) {
       dialog = asyncResult.value;
@@ -58,7 +59,6 @@ function logout() {
 }
 async function power(event) {
   let beaconToken = localStorage.getItem("beaconToken");
-  console.log(beaconToken, "beaconToken**********");
   if (beaconToken) {
     logout();
   } else {
